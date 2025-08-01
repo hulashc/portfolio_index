@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <base href="./">
+  <meta name="robots" content="all">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=5">
+  <style>
+    [data-src] {
+      opacity: 1 !important;
+    }
+
+    .loading,
+    .loader {
+      display: none !important;
+    }
+  </style>
+  <meta charset="UTF-8">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="description"
+    content="Hulash Chand is an innovation engineer based in London, United Kingdom, specializing in creative engineering solutions. Passionate about blending art and technology, Hulash sees aesthetics in coding and brings creativity to every engineering project.">
+  <base href="/">
+  <title>Hulash Chand — Innovation Engineer</title>
+  <link rel="icon" type="image/png" href="/assets/fav/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="/assets/fav/favicon.svg" />
+  <link rel="shortcut icon" href="/assets/fav/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/fav/apple-touch-icon.png" />
+  <link rel="manifest" href="/assets/fav/site.webmanifest" />
+  <meta name="msapplication-TileColor" content="#161310">
+  <meta name="msapplication-config" content="/assets/fav/browserconfig.xml">
+  <meta name="theme-color" content="#ecebeb">
+  <link rel="preload" href="/assets/fonts/me2.woff2" as="font" type="font/woff2" crossorigin="">
+  <link rel="preload" href="/assets/fonts/mo4.woff2" as="font" type="font/woff2" crossorigin="">
+  <link rel="preload" href="assets/fonts/mo7.woff2" as="font" type="font/woff2" crossorigin="">
+  <style>
+    @font-face {
+      font-family: "me";
+      src: url("/assets/fonts/me2.woff2") format("woff2");
+      font-weight: 200;
+      font-size: normal;
+      font-display: swap;
+    }
+
+    @font-face {
+      font-family: "mo";
+      src: url("/assets/fonts/mo4.woff2") format("woff2");
+      font-weight: 400;
+      font-size: normal;
+      font-display: swap;
+    }
+
+    @font-face {
+      font-family: "mo";
+      src: url("/assets/fonts/mo7.woff2") format("woff2");
+      font-weight: 700;
+      font-size: normal;
+      font-display: swap;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      font: inherit;
+    }
+
+    html {
+      -webkit-text-size-adjust: none;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    li,
+    ul {
+      list-style: none;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    a,
+    img,
+    picture,
+    svg,
+    video {
+      display: block;
+    }
+
+    img,
+    video {
+      width: 100%;
+      height: auto;
+    }
+
+    body,
+    html,
+    svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    body,
+    html {
+      overscroll-behavior: none;
+    }
+
+    html {
+      -webkit-tap-highlight-color: transparent;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      user-select: none;
+    }
+
+    ::-moz-selection {
+      color: #ecebeb;
+      background: #161310;
+      text-shadow: none;
+    }
+
+    ::selection {
+      color: #ecebeb;
+      background: #161310;
+      text-shadow: none;
+    }
+
+    body {
+      font-family: "mo";
+      font-weight: 400;
+    }
+
+    body._d,
+    body._d #lo-bg,
+    body._l #lo.i #lo-bg {
+      background: #161310;
+    }
+
+    body._l,
+    body._l #lo-bg,
+    body._d #lo.i #lo-bg {
+      background: #ecebeb;
+    }
+
+    body._d #lo-co {
+      color: #161310;
+    }
+
+    body._l #lo-co {
+      color: #ecebeb;
+    }
+
+    body._l #lo.i #lo-pr {
+      color: #787878;
+    }
+
+    body._l #lo-me>img {
+      outline: 2px solid #161310;
+      outline-offset: -1px;
+    }
+
+    .ro_ {
+      background: #161310;
+      color: #ecebeb;
+    }
+  </style>
+  <meta property="og:site_name" content="Hulash Chand Donempudi">
+  <meta property="og:locale" content="en_GB">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://Hulash.com">
+  <meta property="og:title" content="Hulash Chand — Innovation Engineer">
+  <meta property="og:description"
+    content="Hulash Chand is an innovation engineer based in London, United Kingdom, specializing in creative engineering solutions. Passionate about blending art and technology, Hulash sees aesthetics in coding and brings creativity to every engineering project.">
+  <meta property="og:image"
+    content="https://images.prismic.io/cristinagomez/Zn-nVx5LeNNTwpDo_OpenGrapgh-v3-1-.jpg?auto=format,compress">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Hulash Chand — Innovation Engineer">
+  <meta name="twitter:description"
+    content="Hulash Chand is an innovation engineer based in London, United Kingdom, specializing in creative engineering solutions. Passionate about blending art and technology, Hulash sees aesthetics in coding and brings creativity to every engineering project.">
+  <meta name="twitter:image"
+    content="https://images.prismic.io/cristinagomez/Zn-nVx5LeNNTwpDo_OpenGrapgh-v3-1-.jpg?auto=format,compress">
+  <link rel="canonical" href="https://Hulash.com">
+  <script>
+    _A = {
+      "config": {
+        "v": "?4"
+      },
+      "route": {
+        "new": {
+          "url": "/work",
+          "page": "wo"
+        },
+        "old": {
+          "url": false,
+          "page": false
+        }
+      },
+      "is": {
+        "wo": true
+      },
+      "was": []
+    };
+
+    // Set light/dark mode from localStorage
+    d.addEventListener("DOMContentLoaded", () => {
+      d.body.className = localStorage.getItem("th") || "_l";
+    });
+
+    // Load main JS
+    const script = d.createElement("script");
+    script.src = "d_61fcf3ce.js" + v;
+    d.head.appendChild(script);
+  </script>
+  <link href="d_84b99430.css" rel="stylesheet">
+</head>
+
+<body class="_l"><canvas id="gl" width="1366" height="768"></canvas>
+  <main id="m">
+    <div class="p_">
+      <div class="p">
+        <section id="wo" style="transform: translate3d(0px, 0px, 0px);">
+          <div id="wo-m">
+            <div class="_me" style="aspect-ratio: 536/779"></div>
+            <div class="_me" style="aspect-ratio: 1053/1579"></div>
+            <div class="_me" style="aspect-ratio: 344/505"></div>
+            <div class="_me" style="aspect-ratio: 1030/1543"></div>
+            <div class="_me" style="aspect-ratio: 1013/1520"></div>
+            <div class="_me" style="aspect-ratio: 367/544"></div>
+            <div class="_me" style="aspect-ratio: 1100/1631"></div>
+            <div class="_me" style="aspect-ratio: 2/3"></div>
+            <div class="_me" style="aspect-ratio: 1100/1649"></div>
+            <div class="_me" style="aspect-ratio: 4/5"></div>
+            <div class="_me" style="aspect-ratio: 2/3"></div>
+          </div>
+          <div id="wo-l"><a class="wo-l-li o" href="/work/alicia-bezares">
+              <div class="l_">
+                <div class="l" style="transform: translate3d(0%, 0px, 0px);"></div>
+              </div>
+              <div class="y_">
+                <div class="y" style="transform: translate3d(0px, 0%, 0px);">
+                  <div class="wo-l-li0">01</div>
+                  <div class="wo-l-li1">Alicia Bezares</div>
+                  <div class="wo-l-li2">6 Pics</div>
+                  <div class="wo-l-li3"> <svg viewBox="0 0 12 12" fill="none">
+                      <path
+                        d="M11.6878 8.48354L11.6802 0.919926C11.6802 0.392583 11.3337 0.0309753 10.7913 0.0309753H3.22015C2.70787 0.0309753 2.35379 0.415183 2.35379 0.867192C2.35379 1.31167 2.738 1.68081 3.19754 1.68081H5.90206L9.09626 1.57534L7.72517 2.7807L0.575893 9.93751C0.402623 10.1183 0.304688 10.3292 0.304688 10.5402C0.304688 10.9847 0.711496 11.4065 1.17104 11.4065C1.38198 11.4065 1.59291 11.3161 1.77372 11.1429L8.93052 3.98605L10.1509 2.61496L10.0229 5.67355V8.50614C10.0229 8.97322 10.392 9.36496 10.8516 9.36496C11.3036 9.36496 11.6878 8.98075 11.6878 8.48354Z">
+                      </path>
+                    </svg></div>
+                </div>
+              </div>
+              <div class="l_">
+                <div class="l" style="transform: translate3d(0%, 0px, 0px);"></div>
+              </div>
+            </a><a class="wo-l-li" href="/work/cantamarta">
+              <div class="y_">
+                <div class="y" style="transform: translate3d(0px, 0%, 0px);">
+                  <div class="wo-l-li0">02</div>
+                  <div class="wo-l-li1">Çantamarta</div>
+                  <div class="wo-l-li2">5 Pics</div>
+                  <div class="wo-l-li3"> <svg viewBox="0 0 12 12" fill="none">
+                      <path
+                        d="M11.6878 8.48354L11.6802 0.919926C11.6802 0.392583 11.3337 0.0309753 10.7913 0.0309753H3.22015C2.70787 0.0309753 2.35379 0.415183 2.35379 0.867192C2.35379 1.31167 2.738 1.68081 3.19754 1.68081H5.90206L9.09626 1.57534L7.72517 2.7807L0.575893 9.93751C0.402623 10.1183 0.304688 10.3292 0.304688 10.5402C0.304688 10.9847 0.711496 11.4065 1.17104 11.4065C1.38198 11.4065 1.59291 11.3161 1.77372 11.1429L8.93052 3.98605L10.1509 2.61496L10.0229 5.67355V8.50614C10.0229 8.97322 10.392 9.36496 10.8516 9.36496C11.3036 9.36496 11.6878 8.98075 11.6878 8.48354Z">
+                      </path>
+                    </svg></div>
+                </div>
+              </div>
+              <div class="l_">
+                <div class="l" style="transform: translate3d(0%, 0px, 0px);"></div>
+              </div>
+            </a><a class="wo-l-li" href="/work/dellafuente-maka">
+              <div class="y_">
+                <div class="y" style="transform: translate3d(0px, 0%, 0px);">
+                  <div class="wo-l-li0">03</div>
+                  <div class="wo-l-li1">Dellafuente &amp; Maka</div>
+                  <div class="wo-l-li2">3 Pics</div>
+                  <div class="wo-l-li3"> <svg viewBox="0 0 12 12" fill="none">
+                      <path
+                        d="M11.6878 8.48354L11.6802 0.919926C11.6802 0.392583 11.3337 0.0309753 10.7913 0.0309753H3.22015C2.70787 0.0309753 2.35379 0.415183 2.35379 0.867192C2.35379 1.31167 2.738 1.68081 3.19754 1.68081H5.90206L9.09626 1.57534L7.72517 2.7807L0.575893 9.93751C0.402623 10.1183 0.304688 10.3292 0.304688 10.5402C0.304688 10.9847 0.711496 11.4065 1.17104 11.4065C1.38198 11.4065 1.59291 11.3161 1.77372 11.1429L8.93052 3.98605L10.1509 2.61496L10.0229 5.67355V8.50614C10.0229 8.97322 10.392 9.36496 10.8516 9.36496C11.3036 9.36496 11.6878 8.98075 11.6878 8.48354Z">
+                      </path>
+                    </svg></div>
+                </div>
+              </div>
+              <div class="l_">
+                <div class="l" style="transform: translate3d(0%, 0px, 0px);"></div>
+              </div>
+            </a><a class="wo-l-li" href="/work/dior">
+              <div class="y_">
+                <div class="y" style="transform: translate3d(0px, 0%, 0px);">
+                  <div class="wo-l-li0">04</div>
+                  <div class="wo-l-li1">Dior</div>
+                  <div class="wo-l-li2">29 Pics</div>
+                  <div class="wo-l-li3"> <svg viewBox="0 0 12 12" fill="none">
+                      <path
+                        d="M11.6878 8.48354L11.6802 0.919926C11.6802 0.392583 11.3337 0.0309753 10.7913 0.0309753H3.22015C2.70787 0.0309753 2.35379 0.415183 2.35379 0.867192C2.35379 1.31167 2.738 1.68081 3.19754 1.68081H5.90206L9.09626 1.57534L7.72517 2.7807L0.575893 9.93751C0.402623 10.1183 0.304688 10.3292 0.304688 10.5402C0.304688 10.9847 0.711496 11.4065 1.17104 11.4065C1.38198 11.4065 1.59291 11.3161 1.77372 11.1429L8.93052 3.98605L10.1509 2.61496L10.0229 5.67355V8.50614C10.0229 8.97322 10.392 9.36496 10.8516 9.36496C11.3036 9.36496 11.6878 8.98075 11.6878 8.48354Z">
+                      </path>
+                    </svg></div>
+                </div>
+              </div>
+              <div class="l_">
+                <div class="l" style="transform: translate3d(0%, 0px, 0px);"></div>
+              </div>
+            </a><a class="wo-l-li" href="/work/escuela-san-telmo">
+              <div class="y_">
+                <div class="y" style="transform: translate3d(0px, 0%, 0px);">
+                  <div class="wo-l-li0">05</div>
+                  <div class="wo-l-li1">Escuela San Telmo</div>
+                  <div class="wo-l-li2">7 Pics</div>
+                  <div class="wo-l-li3"> <svg viewBox="0 0 12 12" fill="none">
+                      <path
+                        d="M11.6878 8.48354L11.6802 0.919926C11.6802 0.392583 11.3337 0.0309753 10.7913 0.0309753H3.22015C2.70787 0.0309753 2.35379 0.415183 2.35379 0.867192C2.35379 1.31167 2.738 1.68081 3.19754 1.68081H5.90206L9.09626 1.57534L7.72517 2.7807L0.575893 9.93751C0.402623 10.1183 0.304688 10.3292 0.304688 10.5402C0.304688 10.9847 0.711496 11.4065 1.17104 11.4065C1.38198 11.4065 1.59291 11.3161 1.77372 11.1429L8.93052 3.98605L10.1509 2.61496L10.0229 5.67355V8.50614C10.0229 8.97322 10.392 9.36496 10.8516 9.36496C11.3036 9.36496 11.6878 8.98075 11.6878 8.48354Z">
+                      </path>
+                    </svg></div>
+                </div>
+              </div>
+              <div class="l_">
+                <div class="l" style="transform: translate3d(0%, 0px, 0px);"></div>
+              </div>
+            </a><a class="wo-l-li" href="/work/estela-clares">
+              <div class="y_">
+                <div class="y" style="transform: translate3d(0px, 0%, 0px);">
+                  <div class="wo-l-li0">06</div>
+                  <div class="wo-l-li1">Estela Clarés</div>
+                  <div class="wo-l-li2">20 Pics</div>
+                  <div class="wo-l-li3"> <svg viewBox="0 0 12 12" fill="none">
+                      <path
+                        d="M11.6878 8.48354L11.6802 0.919926C11.6802 0.392583 11.3337 0.0309753 10.7913 0.0309753H3.22015C2.70787 0.0309753 2.35379 0.415183 2.35379 0.867192C2.35379 1.31167 2.738 1.68081 3.19754 1.68081H5.90206L9.09626 1.57534L7.72517 2.7807L0.575893 9.93751C0.402623 10.1183 0.304688 10.3292 0.304688 10.5402C0.304688 10.9847 0.711496 11.4065 1.17104 11.4065C1.38198 11.4065 1.59291 11.3161 1.77372 11.1429L8.93052 3.98605L10.1509 2.61496L10.0229 5.67355V8.50614C10.0229 8.97322 10.392 9.36496 10.8516 9.36496C11.3036 9.36496 11.6878 8.98075 11.6878 8.48354Z">
+                      </path>
+                    </svg></div>
+                </div>
+              </div>
+              <div class="l_">
+                <div class="l" style="transform: translate3d(0%, 0px, 0px);"></div>
+              </div>
+            </a><a class="wo-l-li" href="/work/ivanros">
+              <div class="y_">
+                <div class="y" style="transform: translate3d(0px, 0%, 0px);">
+                  <div class="wo-l-li0">07</div>
+                  <div class="wo-l-li1">Ivanrós</div>
+                  <div class="wo-l-li2">4 Pics</div>
+                  <div class="wo-l-li3"> <svg viewBox="0 0 12 12" fill="none">
+                      <path
+                        d="M11.6878 8.48354L11.6802 0.919926C11.6802 0.392583 11.3337 0.0309753 10.7913 0.0309753H3.22015C2.70787 0.0309753 2.35379 0.415183 2.35379 0.867192C2.35379 1.31167 2.738 1.68081 3.19754 1.68081H5.90206L9.09626 1.57534L7.72517 2.7807L0.575893 9.93751C0.402623 10.1183 0.304688 10.3292 0.304688 10.5402C0.304688 10.9847 0.711496 11.4065 1.17104 11.4065C1.38198 11.4065 1.59291 11.3161 1.77372 11.1429L8.93052 3.98605L10.1509 2.61496L10.0229 5.67355V8.50614C10.0229 8.97322 10.392 9.36496 10.8516 9.36496C11.3036 9.36496 11.6878 8.98075 11.6878 8.48354Z">
+                      </path>
+                    </svg></div>
+                </div>
+              </div>
+              <div class="l_">
+                <div class="l" style="transform: translate3d(0%, 0px, 0px);"></div>
+              </div>
+            </a><a class="wo-l-li" href="/work/maimono">
+              <div class="y_">
+                <div class="y" style="transform: translate3d(0px, 0%, 0px);">
+                  <div class="wo-l-li0">08</div>
+                  <div class="wo-l-li1">Maimono</div>
+                  <div class="wo-l-li2">7 Pics</div>
+                  <div class="wo-l-li3"> <svg viewBox="0 0 12 12" fill="none">
+                      <path
+                        d="M11.6878 8.48354L11.6802 0.919926C11.6802 0.392583 11.3337 0.0309753 10.7913 0.0309753H3.22015C2.70787 0.0309753 2.35379 0.415183 2.35379 0.867192C2.35379 1.31167 2.738 1.68081 3.19754 1.68081H5.90206L9.09626 1.57534L7.72517 2.7807L0.575893 9.93751C0.402623 10.1183 0.304688 10.3292 0.304688 10.5402C0.304688 10.9847 0.711496 11.4065 1.17104 11.4065C1.38198 11.4065 1.59291 11.3161 1.77372 11.1429L8.93052 3.98605L10.1509 2.61496L10.0229 5.67355V8.50614C10.0229 8.97322 10.392 9.36496 10.8516 9.36496C11.3036 9.36496 11.6878 8.98075 11.6878 8.48354Z">
+                      </path>
+                    </svg></div>
+                </div>
+              </div>
+              <div class="l_">
+                <div class="l" style="transform: translate3d(0%, 0px, 0px);"></div>
+              </div>
+            </a><a class="wo-l-li" href="/work/rocstrong">
+              <div class="y_">
+                <div class="y" style="transform: translate3d(0px, 0%, 0px);">
+                  <div class="wo-l-li0">09</div>
+                  <div class="wo-l-li1">Rocstrong</div>
+                  <div class="wo-l-li2">10 Pics</div>
+                  <div class="wo-l-li3"> <svg viewBox="0 0 12 12" fill="none">
+                      <path
+                        d="M11.6878 8.48354L11.6802 0.919926C11.6802 0.392583 11.3337 0.0309753 10.7913 0.0309753H3.22015C2.70787 0.0309753 2.35379 0.415183 2.35379 0.867192C2.35379 1.31167 2.738 1.68081 3.19754 1.68081H5.90206L9.09626 1.57534L7.72517 2.7807L0.575893 9.93751C0.402623 10.1183 0.304688 10.3292 0.304688 10.5402C0.304688 10.9847 0.711496 11.4065 1.17104 11.4065C1.38198 11.4065 1.59291 11.3161 1.77372 11.1429L8.93052 3.98605L10.1509 2.61496L10.0229 5.67355V8.50614C10.0229 8.97322 10.392 9.36496 10.8516 9.36496C11.3036 9.36496 11.6878 8.98075 11.6878 8.48354Z">
+                      </path>
+                    </svg></div>
+                </div>
+              </div>
+              <div class="l_">
+                <div class="l" style="transform: translate3d(0%, 0px, 0px);"></div>
+              </div>
+            </a><a class="wo-l-li" href="/work/southwest-festival">
+              <div class="y_">
+                <div class="y" style="transform: translate3d(0px, 0%, 0px);">
+                  <div class="wo-l-li0">10</div>
+                  <div class="wo-l-li1">Southwest Festival</div>
+                  <div class="wo-l-li2">11 Pics</div>
+                  <div class="wo-l-li3"> <svg viewBox="0 0 12 12" fill="none">
+                      <path
+                        d="M11.6878 8.48354L11.6802 0.919926C11.6802 0.392583 11.3337 0.0309753 10.7913 0.0309753H3.22015C2.70787 0.0309753 2.35379 0.415183 2.35379 0.867192C2.35379 1.31167 2.738 1.68081 3.19754 1.68081H5.90206L9.09626 1.57534L7.72517 2.7807L0.575893 9.93751C0.402623 10.1183 0.304688 10.3292 0.304688 10.5402C0.304688 10.9847 0.711496 11.4065 1.17104 11.4065C1.38198 11.4065 1.59291 11.3161 1.77372 11.1429L8.93052 3.98605L10.1509 2.61496L10.0229 5.67355V8.50614C10.0229 8.97322 10.392 9.36496 10.8516 9.36496C11.3036 9.36496 11.6878 8.98075 11.6878 8.48354Z">
+                      </path>
+                    </svg></div>
+                </div>
+              </div>
+              <div class="l_">
+                <div class="l" style="transform: translate3d(0%, 0px, 0px);"></div>
+              </div>
+            </a><a class="wo-l-li" href="/work/weareduenas">
+              <div class="y_">
+                <div class="y" style="transform: translate3d(0px, 0%, 0px);">
+                  <div class="wo-l-li0">11</div>
+                  <div class="wo-l-li1">Wearedueñas</div>
+                  <div class="wo-l-li2">17 Pics</div>
+                  <div class="wo-l-li3"> <svg viewBox="0 0 12 12" fill="none">
+                      <path
+                        d="M11.6878 8.48354L11.6802 0.919926C11.6802 0.392583 11.3337 0.0309753 10.7913 0.0309753H3.22015C2.70787 0.0309753 2.35379 0.415183 2.35379 0.867192C2.35379 1.31167 2.738 1.68081 3.19754 1.68081H5.90206L9.09626 1.57534L7.72517 2.7807L0.575893 9.93751C0.402623 10.1183 0.304688 10.3292 0.304688 10.5402C0.304688 10.9847 0.711496 11.4065 1.17104 11.4065C1.38198 11.4065 1.59291 11.3161 1.77372 11.1429L8.93052 3.98605L10.1509 2.61496L10.0229 5.67355V8.50614C10.0229 8.97322 10.392 9.36496 10.8516 9.36496C11.3036 9.36496 11.6878 8.98075 11.6878 8.48354Z">
+                      </path>
+                    </svg></div>
+                </div>
+              </div>
+              <div class="l_">
+                <div class="l" style="transform: translate3d(0%, 0px, 0px);"></div>
+              </div>
+            </a></div>
+        </section>
+        <footer id="f" style="transform: translate3d(0px, 0px, 0px);">
+
+          <div id="f1">
+            <div>
+              <p>Less Is More</p>
+            </div>
+            <div>
+              <div><span>Copyright:</span><span>All Rights Reserved ©2025</span></div>
+              <div><span>Fast Travel:</span><span id="top">Go Back to Top</span></div>
+              <div><span>Design by:</span><a href="" target="_blank" rel="noopener noreferrer">Alex Tkachev</a></div>
+              <div><span>Code by:</span><a href="" target="_blank" rel="noopener noreferrer">Surya Aditya</a></div>
+            </div>
+          </div>
+        </footer>
+      </div>
+    </div>
+  </main>
+  <nav id="n">
+    <div><span>Hulash Chand:</span><span>Innovation Engineer</span></div>
+    <div><span>Location: </span>
+      <p id="_ti">London, United Kingdom (5<span id="_ti-c">:</span>22 PM)</p>
+    </div>
+    <div><span>Navigation: </span>
+      <div id="n-me"><a class="o" href="index.html">Index</a><a href="work.html">Work</a><a
+          href="archives.html">Archive</a>
+        <div id="n-co">Contact</div>
+      </div>
+    </div>
+    <div> <span>Theme: </span>
+      <div id="n-th"><span class="o">Light Mode</span><span>Dark Mode</span></div>
+    </div>
+  </nav>
+  <!-- <script src="d_61fcf3ce.js"></script> -->
+</body>
+
+</html>
