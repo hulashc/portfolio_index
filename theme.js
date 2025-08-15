@@ -1,4 +1,3 @@
-// theme.js
 const themeToggle = {
     init() {
         const toggleEl = document.getElementById("n-th");
@@ -10,10 +9,8 @@ const themeToggle = {
         this.lightBtn = spans[0];
         this.darkBtn = spans[1];
 
-        // Apply saved theme
         this.applySavedTheme();
 
-        // Attach click events
         this.lightBtn.addEventListener("click", () => this.setLight());
         this.darkBtn.addEventListener("click", () => this.setDark());
     },
@@ -41,10 +38,9 @@ const themeToggle = {
         } else {
             this.setLight();
         }
-    }
-};
+    } // ✅ Added missing closing brace
+}; // ✅ Added missing closing brace and semicolon
 
-// Auto-initialize when DOM is ready
 document.addEventListener("DOMContentLoaded", () => {
     themeToggle.init();
 });

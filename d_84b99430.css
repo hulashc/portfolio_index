@@ -1612,30 +1612,53 @@ div.l_ div {
     box-sizing: border-box;
 }
 
-/* Add to your CSS file */
-h1,
-p,
-a {
-    opacity: 0;
-    transform: translateY(20px);
-    animation: fadeInUp 0.8s ease-out forwards;
+
+.hero-image {
+    position: absolute;
+    top: 50%;
+    /* Centers vertically in the available space */
+    left: 50%;
+    /* Centers horizontally */
+    transform: translate(-50%, -50%);
+    /* Perfect centering */
+    max-height: 250px;
+    /* Adjust based on your image */
+    width: auto;
+    max-width: 80%;
+    /* Prevents image from being too wide */
+    z-index: 0;
 }
 
-h1 {
-    animation-delay: 0.3s;
+/* HIDE SCROLLBAR - Multiple browser support */
+
+/* Option 1: Hide scrollbar but keep functionality (recommended) */
+/* Works on Firefox */
+html {
+    scrollbar-width: none;
+    /* Firefox */
 }
 
-p {
-    animation-delay: 0.6s;
+/* Works on Chrome, Safari, Edge */
+::-webkit-scrollbar {
+    display: none;
 }
 
-a {
-    animation-delay: 0.9s;
+/* Option 2: Alternative method for WebKit browsers */
+body::-webkit-scrollbar {
+    display: none;
 }
 
-@keyframes fadeInUp {
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+/* Option 3: If you want to hide it completely on the body */
+body {
+    overflow-x: hidden;
+    /* Hide horizontal scrollbar */
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+}
+
+body::-webkit-scrollbar {
+    display: none;
+    /* Chrome, Safari, Opera */
 }

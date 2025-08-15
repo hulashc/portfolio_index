@@ -19,9 +19,9 @@
 
             this.isInitialized = true;
             this.setupInitialAnimations();
-            // this.setupScrollAnimations();
-            // this.setupHoverEffects();
-            // this.setupLoadingAnimations();
+//             this.setupScrollAnimations();
+//             this.setupHoverEffects();
+//             this.setupLoadingAnimations();
 
             console.log('Smooth animations initialized');
         }
@@ -71,14 +71,13 @@
         }
 
         // Fade up animation
-        /*
-        fadeUp(elements, options = {}) {
-            const {
-                distance = 30,
-                duration = 800,
-                delay = 0,
-                stagger = 0
-            } = options;
+//         fadeUp(elements, options = {}) {
+//             const {
+//                 distance = 30,
+//                     duration = 800,
+//                     delay = 0,
+//                     stagger = 0
+//             } = options;
 
             this.getElements(elements).forEach((element, index) => {
                 // Set initial state
@@ -95,41 +94,40 @@
                 });
             });
         }
-        */
 
-        // Zoom-out (small → normal) + fade-in
+        // Netflix-style title animation
         netflixTitle(elements, options = {}) {
             const {
-                duration = 1200, delay = 0
+                duration = 2000,
+                    delay = 0
             } = options;
 
-            this.getElements(elements).forEach(el => {
-                /* 1-a  starting state: SMALL + INVISIBLE */
-                el.style.opacity = '0';
-                el.style.transform = 'scale(0.80)'; // 80 % of normal size
+            this.getElements(elements).forEach(element => {
+                // Set initial state
+                element.style.opacity = '0';
+                element.style.transform = 'scale(1.15)';
+                element.style.filter = 'blur(8px)';
 
-                /* 1-b  set one smooth transition */
-                el.style.transition = `opacity ${duration}ms ease,
-                               transform ${duration}ms ease`;
-
-                /* 2 - run the animation after the optional delay */
-                setTimeout(() => {
-                    el.style.opacity = '1'; // fade in
-                    el.style.transform = 'scale(1)'; // zoom to normal size
-                }, delay);
+                // Animate
+                this.animate(element, {
+                    opacity: '1',
+                    transform: 'scale(1)',
+                    filter: 'blur(0px)'
+                }, {
+                    duration,
+                    delay,
+                    easing: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)'
+                });
             });
         }
 
-
-
         // Smooth fade in
-        /*
-        fadeIn(elements, options = {}) {
-            const {
-                duration = 1000,
-                delay = 0,
-                stagger = 0
-            } = options;
+//         fadeIn(elements, options = {}) {
+//             const {
+//                 duration = 1000,
+//                     delay = 0,
+//                     stagger = 0
+//             } = options;
 
             this.getElements(elements).forEach((element, index) => {
                 element.style.opacity = '0';
@@ -142,16 +140,14 @@
                 });
             });
         }
-        */
 
         // Scale in animation
-        /*
-        scaleIn(elements, options = {}) {
-            const {
-                fromScale = 0.8,
-                duration = 600,
-                delay = 0
-            } = options;
+//         scaleIn(elements, options = {}) {
+//             const {
+//                 fromScale = 0.8,
+//                     duration = 600,
+//                     delay = 0
+//             } = options;
 
             this.getElements(elements).forEach(element => {
                 element.style.opacity = '0';
@@ -167,7 +163,6 @@
                 });
             });
         }
-        */
 
         // Setup initial page load animations
         setupInitialAnimations() {
@@ -197,12 +192,10 @@
                 for (const selector of navSelectors) {
                     const navElement = document.querySelector(selector);
                     if (navElement) {
-                        /*
-                        this.fadeUp(navElement, {
+//                         this.fadeUp(navElement, {
                             delay: 800,
                             distance: 20
                         });
-                        */
                         break;
                     }
                 }
@@ -221,32 +214,29 @@
                 contentSelectors.forEach((selector, index) => {
                     const elements = document.querySelectorAll(selector);
                     if (elements.length > 0) {
-                        /*
-                        this.fadeUp(elements, {
+//                         this.fadeUp(elements, {
                             delay: 1200 + (index * 200),
                             stagger: 100,
                             distance: 25
                         });
-                        */
                     }
                 });
             });
         }
 
         // Setup scroll-triggered animations
-        /*
-        setupScrollAnimations() {
-            const observerOptions = {
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
-            };
+//         setupScrollAnimations() {
+//             const observerOptions = {
+//                 threshold: 0.1,
+//                 rootMargin: '0px 0px -50px 0px'
+//             };
 
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting && !entry.target.classList.contains('animated')) {
                         entry.target.classList.add('animated');
 
-                        this.fadeUp(entry.target, {
+//                         this.fadeUp(entry.target, {
                             duration: 1000,
                             distance: 30
                         });
@@ -277,29 +267,27 @@
 
             this.observers.set('scroll', observer);
         }
-        */
 
         // Setup elegant hover effects
-        /*
-        setupHoverEffects() {
-            // Links and buttons
-            const interactiveElements = document.querySelectorAll(`
-                a,
-                button,
-                .btn,
-                .link,
-                .project-link,
-                .card,
-                .project-item
-            `);
-
-            interactiveElements.forEach(element => {
-                element.style.transition = 'all 300ms cubic-bezier(0.4, 0, 0.2, 1)';
-
-                element.addEventListener('mouseenter', () => {
-                    element.style.transform = 'translateY(-2px)';
-                    element.style.filter = 'brightness(1.1)';
-                });
+//         setupHoverEffects() {
+//             // Links and buttons
+//             const interactiveElements = document.querySelectorAll(`
+//                 a,
+//                 button,
+//                 .btn,
+//                 .link,
+//                 .project-link,
+//                 .card,
+//                 .project-item
+//             `);
+// 
+//             interactiveElements.forEach(element => {
+//                 element.style.transition = 'all 300ms cubic-bezier(0.4, 0, 0.2, 1)';
+// 
+//                 element.addEventListener('mouseenter', () => {
+//                     element.style.transform = 'translateY(-2px)';
+//                     element.style.filter = 'brightness(1.1)';
+//                 });
 
                 element.addEventListener('mouseleave', () => {
                     element.style.transform = 'translateY(0px)';
@@ -332,26 +320,24 @@
                 });
             });
         }
-        */
 
         // Handle loading animations
-        /*
-        setupLoadingAnimations() {
-            // Loading screen fade out
-            const loadingElements = document.querySelectorAll(`
-                .loading,
-                .loader,
-                .preloader,
-                #loading,
-                #loader
-            `);
-
-            loadingElements.forEach(loader => {
-                setTimeout(() => {
-                    this.animate(loader, {
-                        opacity: '0',
-                        transform: 'scale(0.9)'
-                    }, {
+//         setupLoadingAnimations() {
+//             // Loading screen fade out
+//             const loadingElements = document.querySelectorAll(`
+//                 .loading,
+//                 .loader,
+//                 .preloader,
+//                 #loading,
+//                 #loader
+//             `);
+// 
+//             loadingElements.forEach(loader => {
+//                 setTimeout(() => {
+//                     this.animate(loader, {
+//                         opacity: '0',
+//                         transform: 'scale(0.9)'
+//                     }, {
                         duration: 800,
                         onComplete: () => {
                             loader.style.display = 'none';
@@ -381,7 +367,6 @@
                 }, 100);
             });
         }
-        */
 
         // Smooth scroll to top
         scrollToTop() {
@@ -433,12 +418,14 @@
     // Add CSS for smooth scrolling and performance
     const style = document.createElement('style');
     style.textContent = `
-
-        + .netflix-animated {
-+     backface-visibility: hidden;      /* keeps the GPU layer only where needed */
-+     perspective: 1000px;
-+     will-change: transform, opacity;  /* hint for smoother animation */
-+ }
+        html {
+// Removed scroll-behavior to avoid scroll issues
+        }
+        
+        * {
+            backface-visibility: hidden;
+            perspective: 1000;
+        }
         
         .animated {
             will-change: transform, opacity;
