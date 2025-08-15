@@ -1,401 +1,524 @@
-// Elegant & Smooth Portfolio Animations
-// A clean, performant animation system for modern portfolios
+// unified-animations.js - Complete unified animation system
 
 (function () {
     'use strict';
 
-    // Animation Engine
-    class SmoothAnimations {
+    class UnifiedAnimations {
         constructor() {
             this.animations = new Map();
             this.observers = new Map();
             this.isInitialized = false;
             this.rafId = null;
+
+            // Text animation properties
+            this.textInstances = [];
+            this.instanceId = 0;
         }
 
-        // Initialize the animation system
+        // Initialize the unified system
         init() {
             if (this.isInitialized) return;
-
             this.isInitialized = true;
             this.setupInitialAnimations();
-            // this.setupScrollAnimations();
-            // this.setupHoverEffects();
-            // this.setupLoadingAnimations();
-
-            console.log('Smooth animations initialized');
+            console.log('Unified animations initialized');
         }
 
         // Utility: Get elements safely
         getElements(selector) {
             if (typeof selector === 'string') {
-                return Array.from(document.querySelectorAll(selector));
+                if (selector.startsWith('#')) {
+                    const el = document.getElementById(selector.slice(1));
+                    return el ? [el] : [];
+                } else if (selector.startsWith('.')) {
+                    return Array.from(document.getElementsByClassName(selector.slice(1)));
+                } else {
+                    return Array.from(document.querySelectorAll(selector));
+                }
             }
             return Array.isArray(selector) ? selector : [selector];
         }
 
-        // Core animation function
-        animate(element, properties, options = {}) {
+        // UNIFIED ANIMATE METHOD - Main entry point
+        animate(options) {
             const {
+                element: selector,
+                type = 'element', // 'text' or 'element'
+                animation = 'fadeIn',
+                splitBy = null, // for text: 'lines', 'words', 'chars'
                 duration = 800,
+                delay = 0,
+                stagger = 0,
+                easing = 'cubic-bezier(0.4, 0, 0.2, 1)',
+                distance = 30,
+                scale = 0.8,
+                onComplete = null
+            } = options;
+
+            const elements = this.getElements(selector);
+            if (elements.length === 0) {
+                console.warn(`No elements found for selector: ${selector}`);
+                return null;
+            }
+
+            // Route to appropriate animation system
+            if (type === 'text' || splitBy) {
+                return this.handleTextAnimation({
+                    element: selector,
+                    splitBy: splitBy || 'lines',
+                    animation,
+                    duration,
+                    delay,
+                    stagger,
+                    easing
+                });
+            } else {
+                return this.handleElementAnimation(elements, {
+                    animation,
+                    duration,
+                    delay,
+                    stagger,
+                    easing,
+                    distance,
+                    scale,
+                    onComplete
+                });
+            }
+        }
+
+        // Handle text animations (from your text-animation.js)
+        handleTextAnimation(options) {
+            const {
+                element: elementSelector,
+                splitBy = 'lines',
+                animation = 'slideUp',
+                duration = 800,
+                delay = 0,
+                stagger = 100,
+                easing = 'easeOutCubic'
+            } = options;
+
+            const elements = this.getElements(elementSelector);
+            if (elements.length === 0) return null;
+
+            const instance = {
+                id: ++this.instanceId,
+                elements,
+                splitBy,
+                animation,
+                duration,
+                delay,
+                stagger,
+                easing,
+                splitElements: [],
+                isAnimated: false
+            };
+
+            // Process each element
+            elements.forEach((element, index) => {
+                const splitData = this.splitText(element, splitBy);
+                instance.splitElements[index] = splitData;
+            });
+
+            this.textInstances.push(instance);
+
+            return {
+                id: instance.id,
+                play: () => this.playTextAnimation(instance.id),
+                reset: () => this.resetTextAnimation(instance.id),
+                destroy: () => this.destroyTextAnimation(instance.id)
+            };
+        }
+
+        // Handle element animations (from your animation-engine.js)
+        handleElementAnimation(elements, options) {
+            const {
+                animation = 'fadeIn',
+                    duration = 800,
                     delay = 0,
+                    stagger = 0,
                     easing = 'cubic-bezier(0.4, 0, 0.2, 1)',
+                    distance = 30,
+                    scale = 0.8,
                     onComplete = null
             } = options;
 
-            if (!element || !element.style) return;
+            elements.forEach((element, index) => {
+                const elementDelay = delay + (index * stagger);
 
-            // Apply initial transform if needed
-            if (properties.transform && !element.style.transform) {
-                element.style.transform = properties.transform.from || '';
-            }
+                switch (animation) {
+                    case 'fadeIn':
+                        this.fadeInElement(element, {
+                            duration,
+                            delay: elementDelay,
+                            easing,
+                            onComplete
+                        });
+                        break;
+                    case 'fadeUp':
+                        this.fadeUpElement(element, {
+                            duration,
+                            delay: elementDelay,
+                            easing,
+                            distance,
+                            onComplete
+                        });
+                        break;
+                    case 'scaleIn':
+                        this.scaleInElement(element, {
+                            duration,
+                            delay: elementDelay,
+                            easing,
+                            scale,
+                            onComplete
+                        });
+                        break;
+                    case 'netflixTitle':
+                        this.netflixTitleElement(element, {
+                            duration,
+                            delay: elementDelay,
+                            onComplete
+                        });
+                        break;
+                    default:
+                        this.fadeInElement(element, {
+                            duration,
+                            delay: elementDelay,
+                            easing,
+                            onComplete
+                        });
+                }
+            });
 
-            // Set transition
+            return {
+                play: () => this.handleElementAnimation(elements, options)
+            };
+        }
+
+        // Element animation methods
+        fadeInElement(element, options = {}) {
+            const {
+                duration = 800, delay = 0, easing = 'cubic-bezier(0.4, 0, 0.2, 1)', onComplete = null
+            } = options;
+
+            element.style.opacity = '0';
+            element.style.transition = `opacity ${duration}ms ${easing}`;
+
+            setTimeout(() => {
+                element.style.opacity = '1';
+                if (onComplete) setTimeout(onComplete, duration);
+            }, delay);
+        }
+
+        fadeUpElement(element, options = {}) {
+            const {
+                duration = 800, delay = 0, easing = 'cubic-bezier(0.4, 0, 0.2, 1)', distance = 30, onComplete = null
+            } = options;
+
+            element.style.opacity = '0';
+            element.style.transform = `translateY(${distance}px)`;
             element.style.transition = `all ${duration}ms ${easing}`;
 
-            // Apply animation after delay
             setTimeout(() => {
-                Object.keys(properties).forEach(prop => {
-                    if (prop === 'transform') {
-                        element.style.transform = properties[prop].to || properties[prop];
-                    } else {
-                        element.style[prop] = properties[prop];
-                    }
-                });
+                element.style.opacity = '1';
+                element.style.transform = 'translateY(0px)';
+                if (onComplete) setTimeout(onComplete, duration);
+            }, delay);
+        }
 
-                // Handle completion
-                if (onComplete) {
-                    setTimeout(onComplete, duration);
+        scaleInElement(element, options = {}) {
+            const {
+                duration = 600, delay = 0, easing = 'cubic-bezier(0.34, 1.56, 0.64, 1)', scale = 0.8, onComplete = null
+            } = options;
+
+            element.style.opacity = '0';
+            element.style.transform = `scale(${scale})`;
+            element.style.transition = `all ${duration}ms ${easing}`;
+
+            setTimeout(() => {
+                element.style.opacity = '1';
+                element.style.transform = 'scale(1)';
+                if (onComplete) setTimeout(onComplete, duration);
+            }, delay);
+        }
+
+        netflixTitleElement(element, options = {}) {
+            const {
+                duration = 1200, delay = 0, onComplete = null
+            } = options;
+
+            element.style.opacity = '0';
+            element.style.transform = 'scale(0.80)';
+            element.style.transition = `opacity ${duration}ms ease, transform ${duration}ms ease`;
+
+            setTimeout(() => {
+                element.style.opacity = '1';
+                element.style.transform = 'scale(1)';
+                if (onComplete) setTimeout(onComplete, duration);
+            }, delay);
+        }
+
+        // Text animation methods (from your text-animation.js)
+        splitText(element, splitBy) {
+            const originalText = element.textContent;
+            let parts = [];
+
+            if (splitBy === 'lines') {
+                parts = this.splitIntoLines(element);
+            } else if (splitBy === 'words') {
+                parts = this.splitIntoWords(originalText);
+            } else if (splitBy === 'chars') {
+                parts = this.splitIntoChars(originalText);
+            }
+
+            const wrappedParts = parts.map((part, index) => {
+                const wrapper = document.createElement('span');
+                wrapper.className = `text-anim-part text-anim-${splitBy}`;
+                wrapper.style.display = 'inline-block';
+                wrapper.style.overflow = 'hidden';
+
+                const inner = document.createElement('span');
+                inner.className = 'text-anim-inner';
+                inner.style.display = 'inline-block';
+                inner.textContent = part;
+
+                this.setInitialTextState(inner, 'slideUp');
+                wrapper.appendChild(inner);
+
+                return {
+                    wrapper,
+                    inner,
+                    text: part,
+                    index
+                };
+            });
+
+            element.innerHTML = '';
+            wrappedParts.forEach((part, index) => {
+                element.appendChild(part.wrapper);
+                if ((splitBy === 'words' || splitBy === 'chars') && index < wrappedParts.length - 1) {
+                    element.appendChild(document.createTextNode(' '));
+                }
+            });
+
+            return {
+                originalText,
+                parts: wrappedParts,
+                element
+            };
+        }
+
+        splitIntoLines(element) {
+            const originalText = element.textContent;
+            const words = originalText.split(' ');
+            const lines = [];
+
+            const temp = document.createElement('div');
+            temp.style.visibility = 'hidden';
+            temp.style.position = 'absolute';
+            temp.style.whiteSpace = 'nowrap';
+            temp.style.font = window.getComputedStyle(element).font;
+            document.body.appendChild(temp);
+
+            const maxWidth = element.offsetWidth;
+            let currentLine = '';
+
+            words.forEach((word, index) => {
+                const testLine = currentLine + (currentLine ? ' ' : '') + word;
+                temp.textContent = testLine;
+
+                if (temp.offsetWidth > maxWidth && currentLine) {
+                    lines.push(currentLine);
+                    currentLine = word;
+                } else {
+                    currentLine = testLine;
+                }
+
+                if (index === words.length - 1) {
+                    lines.push(currentLine);
+                }
+            });
+
+            document.body.removeChild(temp);
+            return lines.length > 0 ? lines : [originalText];
+        }
+
+        splitIntoWords(text) {
+            return text.split(' ').filter(word => word.length > 0);
+        }
+
+        splitIntoChars(text) {
+            return text.split('');
+        }
+
+        setInitialTextState(element, animation) {
+            switch (animation) {
+                case 'slideUp':
+                    element.style.transform = 'translateY(100%)';
+                    element.style.opacity = '1';
+                    break;
+                case 'slideDown':
+                    element.style.transform = 'translateY(-100%)';
+                    element.style.opacity = '1';
+                    break;
+                case 'fadeIn':
+                    element.style.opacity = '0';
+                    element.style.transform = 'translateY(20px)';
+                    break;
+                case 'scaleIn':
+                    element.style.transform = 'scale(0)';
+                    element.style.opacity = '1';
+                    break;
+            }
+        }
+
+        playTextAnimation(instanceId) {
+            const instance = this.textInstances.find(inst => inst.id === instanceId);
+            if (!instance) return;
+
+            instance.splitElements.forEach((splitData, elementIndex) => {
+                splitData.parts.forEach((part, partIndex) => {
+                    const delay = instance.delay + (partIndex * instance.stagger);
+                    this.animateTextToFinal(part.inner, instance.animation, instance.duration, instance.easing, delay);
+                });
+            });
+
+            instance.isAnimated = true;
+        }
+
+        animateTextToFinal(element, animation, duration, easing, delay = 0) {
+            setTimeout(() => {
+                element.style.transition = `all ${duration}ms cubic-bezier(0.16, 1, 0.3, 1)`;
+
+                switch (animation) {
+                    case 'slideUp':
+                    case 'slideDown':
+                        element.style.transform = 'translate(0, 0)';
+                        element.style.opacity = '1';
+                        break;
+                    case 'fadeIn':
+                        element.style.opacity = '1';
+                        element.style.transform = 'translateY(0)';
+                        break;
+                    case 'scaleIn':
+                        element.style.transform = 'scale(1)';
+                        element.style.opacity = '1';
+                        break;
                 }
             }, delay);
         }
 
-        // Fade up animation
-        /*
-        fadeUp(elements, options = {}) {
-            const {
-                distance = 30,
-                duration = 800,
-                delay = 0,
-                stagger = 0
-            } = options;
+        resetTextAnimation(instanceId) {
+            const instance = this.textInstances.find(inst => inst.id === instanceId);
+            if (!instance) return;
 
-            this.getElements(elements).forEach((element, index) => {
-                // Set initial state
-                element.style.opacity = '0';
-                element.style.transform = `translateY(${distance}px)`;
-
-                // Animate
-                this.animate(element, {
-                    opacity: '1',
-                    transform: 'translateY(0px)'
-                }, {
-                    duration,
-                    delay: delay + (index * stagger)
+            instance.splitElements.forEach(splitData => {
+                splitData.parts.forEach(part => {
+                    part.inner.style.transition = 'none';
+                    this.setInitialTextState(part.inner, instance.animation);
                 });
             });
+
+            instance.isAnimated = false;
         }
-        */
 
-        // Zoom-out (small → normal) + fade-in
-        netflixTitle(elements, options = {}) {
-            const {
-                duration = 1200, delay = 0
-            } = options;
+        destroyTextAnimation(instanceId) {
+            const instanceIndex = this.textInstances.findIndex(inst => inst.id === instanceId);
+            if (instanceIndex === -1) return;
 
-            this.getElements(elements).forEach(el => {
-                /* 1-a  starting state: SMALL + INVISIBLE */
-                el.style.opacity = '0';
-                el.style.transform = 'scale(0.80)'; // 80 % of normal size
-
-                /* 1-b  set one smooth transition */
-                el.style.transition = `opacity ${duration}ms ease,
-                               transform ${duration}ms ease`;
-
-                /* 2 - run the animation after the optional delay */
-                setTimeout(() => {
-                    el.style.opacity = '1'; // fade in
-                    el.style.transform = 'scale(1)'; // zoom to normal size
-                }, delay);
+            const instance = this.textInstances[instanceIndex];
+            instance.splitElements.forEach(splitData => {
+                splitData.element.textContent = splitData.originalText;
             });
+
+            this.textInstances.splice(instanceIndex, 1);
         }
 
-
-
-        // Smooth fade in
-        /*
-        fadeIn(elements, options = {}) {
-            const {
-                duration = 1000,
-                delay = 0,
-                stagger = 0
-            } = options;
-
-            this.getElements(elements).forEach((element, index) => {
-                element.style.opacity = '0';
-
-                this.animate(element, {
-                    opacity: '1'
-                }, {
-                    duration,
-                    delay: delay + (index * stagger)
-                });
-            });
-        }
-        */
-
-        // Scale in animation
-        /*
-        scaleIn(elements, options = {}) {
-            const {
-                fromScale = 0.8,
-                duration = 600,
-                delay = 0
-            } = options;
-
-            this.getElements(elements).forEach(element => {
-                element.style.opacity = '0';
-                element.style.transform = `scale(${fromScale})`;
-
-                this.animate(element, {
-                    opacity: '1',
-                    transform: 'scale(1)'
-                }, {
-                    duration,
-                    delay,
-                    easing: 'cubic-bezier(0.34, 1.56, 0.64, 1)'
-                });
-            });
-        }
-        */
-
-        // Setup initial page load animations
+        // Setup initial animations
         setupInitialAnimations() {
-            // Wait for fonts and images to load
             document.fonts.ready.then(() => {
                 // Hero title - Netflix style
-                const heroSelectors = [
-                    'h1',
-                    '.hero-title',
-                    '[class*="title"]',
-                    'header h1, header h2',
-                    '.main-title'
-                ];
-
+                const heroSelectors = ['h1', '.hero-title', '[class*="title"]', 'header h1, header h2', '.main-title'];
                 for (const selector of heroSelectors) {
                     const heroElement = document.querySelector(selector);
                     if (heroElement) {
-                        this.netflixTitle(heroElement, {
+                        this.animate({
+                            element: selector,
+                            type: 'element',
+                            animation: 'netflixTitle',
                             delay: 300
                         });
                         break;
                     }
                 }
-
-                // Navigation - smooth fade up
-                const navSelectors = ['nav', '.navigation', 'header nav', '.nav'];
-                for (const selector of navSelectors) {
-                    const navElement = document.querySelector(selector);
-                    if (navElement) {
-                        /*
-                        this.fadeUp(navElement, {
-                            delay: 800,
-                            distance: 20
-                        });
-                        */
-                        break;
-                    }
-                }
-
-                // Content sections - staggered fade up
-                const contentSelectors = [
-                    'main section',
-                    '.content section',
-                    'article',
-                    '.about',
-                    '.projects',
-                    'p',
-                    '.description'
-                ];
-
-                contentSelectors.forEach((selector, index) => {
-                    const elements = document.querySelectorAll(selector);
-                    if (elements.length > 0) {
-                        /*
-                        this.fadeUp(elements, {
-                            delay: 1200 + (index * 200),
-                            stagger: 100,
-                            distance: 25
-                        });
-                        */
-                    }
-                });
             });
         }
 
-        // Setup scroll-triggered animations
-        /*
-        setupScrollAnimations() {
-            const observerOptions = {
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
-            };
-
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting && !entry.target.classList.contains('animated')) {
-                        entry.target.classList.add('animated');
-
-                        this.fadeUp(entry.target, {
-                            duration: 1000,
-                            distance: 30
-                        });
-                    }
-                });
-            }, observerOptions);
-
-            // Observe common content elements
-            const scrollElements = document.querySelectorAll(`
-                .card,
-                .project,
-                .work-item,
-                .portfolio-item,
-                .skill,
-                .experience,
-                .education,
-                footer,
-                .footer,
-                .contact,
-                .cta
-            `);
-
-            scrollElements.forEach(element => {
-                element.style.opacity = '0';
-                element.style.transform = 'translateY(30px)';
-                observer.observe(element);
-            });
-
-            this.observers.set('scroll', observer);
-        }
-        */
-
-        // Setup elegant hover effects
-        /*
-        setupHoverEffects() {
-            // Links and buttons
-            const interactiveElements = document.querySelectorAll(`
-                a,
-                button,
-                .btn,
-                .link,
-                .project-link,
-                .card,
-                .project-item
-            `);
-
-            interactiveElements.forEach(element => {
-                element.style.transition = 'all 300ms cubic-bezier(0.4, 0, 0.2, 1)';
-
-                element.addEventListener('mouseenter', () => {
-                    element.style.transform = 'translateY(-2px)';
-                    element.style.filter = 'brightness(1.1)';
-                });
-
-                element.addEventListener('mouseleave', () => {
-                    element.style.transform = 'translateY(0px)';
-                    element.style.filter = 'brightness(1)';
-                });
-
-                // Click effect
-                element.addEventListener('mousedown', () => {
-                    element.style.transform = 'translateY(0px) scale(0.98)';
-                });
-
-                element.addEventListener('mouseup', () => {
-                    element.style.transform = 'translateY(-2px) scale(1)';
-                });
-            });
-
-            // Special hover effect for navigation items
-            const navLinks = document.querySelectorAll('nav a, .nav a, .navigation a');
-            navLinks.forEach(link => {
-                link.style.transition = 'all 250ms ease-out';
-
-                link.addEventListener('mouseenter', () => {
-                    link.style.opacity = '0.7';
-                    link.style.transform = 'translateX(3px)';
-                });
-
-                link.addEventListener('mouseleave', () => {
-                    link.style.opacity = '1';
-                    link.style.transform = 'translateX(0px)';
-                });
-            });
-        }
-        */
-
-        // Handle loading animations
-        /*
-        setupLoadingAnimations() {
-            // Loading screen fade out
-            const loadingElements = document.querySelectorAll(`
-                .loading,
-                .loader,
-                .preloader,
-                #loading,
-                #loader
-            `);
-
-            loadingElements.forEach(loader => {
-                setTimeout(() => {
-                    this.animate(loader, {
-                        opacity: '0',
-                        transform: 'scale(0.9)'
-                    }, {
-                        duration: 800,
-                        onComplete: () => {
-                            loader.style.display = 'none';
-                        }
-                    });
-                }, 2500);
-            });
-
-            // Progress bars
-            const progressBars = document.querySelectorAll(`
-                .progress-bar,
-                .loading-bar,
-                .progress
-            `);
-
-            progressBars.forEach(bar => {
-                bar.style.transform = 'scaleX(0)';
-                bar.style.transformOrigin = 'left center';
-
-                setTimeout(() => {
-                    this.animate(bar, {
-                        transform: 'scaleX(1)'
-                    }, {
-                        duration: 2000,
-                        easing: 'cubic-bezier(0.4, 0, 0.2, 1)'
-                    });
-                }, 100);
-            });
-        }
-        */
-
-        // Smooth scroll to top
-        scrollToTop() {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
+        // Convenience methods
+        slideUp(selector, options = {}) {
+            return this.animate({
+                element: selector,
+                type: 'text',
+                animation: 'slideUp',
+                splitBy: 'lines',
+                ...options
             });
         }
 
-        // Cleanup method
+        fadeInWords(selector, options = {}) {
+            return this.animate({
+                element: selector,
+                type: 'text',
+                animation: 'fadeIn',
+                splitBy: 'words',
+                stagger: 50,
+                ...options
+            });
+        }
+
+        typeWriter(selector, options = {}) {
+            return this.animate({
+                element: selector,
+                type: 'text',
+                animation: 'fadeIn',
+                splitBy: 'chars',
+                stagger: 30,
+                ...options
+            });
+        }
+
+        fadeInElements(selector, options = {}) {
+            return this.animate({
+                element: selector,
+                type: 'element',
+                animation: 'fadeIn',
+                ...options
+            });
+        }
+
+        fadeUpElements(selector, options = {}) {
+            return this.animate({
+                element: selector,
+                type: 'element',
+                animation: 'fadeUp',
+                ...options
+            });
+        }
+
+        scaleInElements(selector, options = {}) {
+            return this.animate({
+                element: selector,
+                type: 'element',
+                animation: 'scaleIn',
+                ...options
+            });
+        }
+
+        // Cleanup
         destroy() {
             this.observers.forEach(observer => observer.disconnect());
             this.observers.clear();
             this.animations.clear();
+            this.textInstances = [];
             if (this.rafId) {
                 cancelAnimationFrame(this.rafId);
             }
@@ -403,10 +526,9 @@
     }
 
     // Initialize when DOM is ready
-    function initializeAnimations() {
-        const animations = new SmoothAnimations();
+    function initializeUnifiedAnimations() {
+        const animations = new UnifiedAnimations();
 
-        // Initialize immediately if DOM is ready
         if (document.readyState === 'loading') {
             document.addEventListener('DOMContentLoaded', () => {
                 setTimeout(() => animations.init(), 100);
@@ -415,37 +537,28 @@
             setTimeout(() => animations.init(), 100);
         }
 
-        // Make available globally for manual control
-        window.SmoothAnimations = animations;
-
-        // Auto-handle back to top buttons
-        document.addEventListener('click', (e) => {
-            if (e.target.matches('.back-to-top, .scroll-top, #top, .top-btn')) {
-                e.preventDefault();
-                animations.scrollToTop();
-            }
-        });
+        // Make available globally
+        window.UnifiedAnimations = animations;
+        return animations;
     }
 
-    // Start the system
-    initializeAnimations();
+    // Start the unified system
+    const unifiedAnimations = initializeUnifiedAnimations();
 
-    // Add CSS for smooth scrolling and performance
+    // Add CSS for performance
     const style = document.createElement('style');
     style.textContent = `
-
-        + .netflix-animated {
-+     backface-visibility: hidden;      /* keeps the GPU layer only where needed */
-+     perspective: 1000px;
-+     will-change: transform, opacity;  /* hint for smoother animation */
-+ }
-        
-        .animated {
-            will-change: transform, opacity;
-        }
-    `;
+  .text-anim-part {
+    backface-visibility: hidden;
+    perspective: 1000px;
+    will-change: transform, opacity;
+  }
+  .animated {
+    will-change: transform, opacity;
+  }
+`;
     document.head.appendChild(style);
 
-})();
+    console.log('Unified animations system loaded');
 
-console.log('Elegant smooth animations loaded');
+})();
