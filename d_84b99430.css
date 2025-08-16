@@ -2,11 +2,6 @@
     position: fixed;
     z-index: 9996;
     inset: 0;
-    display: flex;
-    align-items: center;
-    opacity: .15;
-    pointer-events: none;
-    user-select: none;
     top: 2.22vh;
     right: 1.39vw;
     left: 1.39vw;
@@ -25,15 +20,9 @@
     position: relative;
     width: 6.6666666667vw;
     height: 100%;
-    background: red
-}
-
-#_g #g div:first-child {
-    margin-left: 0
-}
-
-#_g #g div:last-child {
-    margin-right: 0
+    background: red;
+    margin-left: 0;
+    margin-right: 0;
 }
 
 #_g.o {
@@ -89,50 +78,53 @@
     }
 }
 
+body._d,
+body._l {
+    --a: #787878;
+}
+
+/* _d variables */
 body._d {
     --b: #161310;
     --c: #ecebeb;
-    --a: #787878
 }
 
-body._d #n>a *:nth-child(2),
-body._d #n>div *:nth-child(2) {
-    color: var(--b)
+body._d #n *:nth-child(2) {
+    color: var(--b);
 }
 
 body._d #wd-n {
-    color: var(--c)
+    color: var(--c);
 }
 
 body._d #lo-pr>div {
-    background-color: var(--c)
+    background-color: var(--c);
 }
 
 body._d #lo.i #lo-pr>div {
-    background-color: var(--b)
+    background-color: var(--b);
 }
 
+/* _l variables */
 body._l {
     --b: #ecebeb;
     --c: #161310;
-    --a: #787878
 }
 
-body._l #n>a>*:nth-child(2),
-body._l #n>div>*:nth-child(2) {
-    color: var(--c)
+body._l #n *:nth-child(2) {
+    color: var(--c);
 }
 
 body._l #wd-n {
-    color: var(--b)
+    color: var(--b);
 }
 
 body._l #lo-pr>div {
-    background-color: var(--c)
+    background-color: var(--c);
 }
 
 body._l #lo.i #lo-pr>div {
-    background-color: var(--b)
+    background-color: var(--b);
 }
 
 canvas {
@@ -141,16 +133,22 @@ canvas {
     left: 0;
     width: 100%;
     height: 100%;
-    pointer-events: none
+    pointer-events: none;
 }
 
 html {
-    background: var(--b)
+    background: var(--b);
 }
 
 body {
     background: var(--b);
-    color: var(--c)
+    color: var(--c);
+}
+
+.p_ {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
 }
 
 #m {
@@ -160,27 +158,20 @@ body {
     overflow: visible;
 }
 
-/* Fixed CSS for natural scrolling */
-.p_ {
-    position: relative;
-    width: 100%;
-    min-height: 100vh;
-}
-
 .p {
     position: relative;
     height: 100%;
-    will-change: transform
+    will-change: transform;
 }
 
 .y {
     transform: translate3d(0, 110%, 0);
     will-change: transform;
-    pointer-events: none
+    pointer-events: none;
 }
 
 .y_ {
-    overflow: hidden
+    overflow: hidden;
 }
 
 div.l_ {
@@ -189,21 +180,14 @@ div.l_ {
     left: 0;
     width: 100%;
     height: 3px;
-    overflow: hidden
+    overflow: hidden;
 }
 
 div.l_ div {
     width: 100%;
     height: 1px;
     border-bottom: solid 1.34px var(--c);
-    transform: translate3d(-110%, 0, 0)
-}
-
-#lo {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden
+    transform: translate3d(-110%, 0, 0);
 }
 
 #lo,
@@ -213,7 +197,14 @@ div.l_ div {
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: 9995
+    z-index: 9995;
+}
+
+#lo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
 }
 
 #lo-pr {
@@ -225,7 +216,7 @@ div.l_ div {
     overflow: hidden;
     will-change: transform;
     z-index: 9996;
-    background-color: #7878784d
+    background-color: #7878784d;
 }
 
 #lo-pr_ {
@@ -234,14 +225,14 @@ div.l_ div {
     left: 1.39vw;
     width: 97.22vw;
     height: 1.5px;
-    overflow: hidden
+    overflow: hidden;
 }
 
 #lo-pr>div {
     will-change: transform;
     width: 100%;
     height: 100%;
-    transform: translate3d(-110%, 0, 0)
+    transform: translate3d(-110%, 0, 0);
 }
 
 #lo-co_ {
@@ -254,7 +245,7 @@ div.l_ div {
     display: flex;
     align-items: flex-end;
     justify-content: space-between;
-    overflow: hidden
+    overflow: hidden;
 }
 
 #lo-co_>div:last-child {
@@ -262,7 +253,7 @@ div.l_ div {
     padding-left: 1.39vw;
     padding-right: 1.39vw;
     box-sizing: border-box;
-    overflow: hidden
+    overflow: hidden;
 }
 
 #lo-co_ #lo-co {
@@ -275,7 +266,7 @@ div.l_ div {
     letter-spacing: -.0097vw;
     font-weight: 700;
     font-family: mo;
-    will-change: transform
+    will-change: transform;
 }
 
 #lo-me {
@@ -285,18 +276,18 @@ div.l_ div {
     transform: translate(-50%);
     width: 18.31vw;
     aspect-ratio: 3/4;
-    z-index: 9996
+    z-index: 9996;
 }
 
 @media (min-aspect-ratio: 1440/900) {
     #lo-me {
-        width: 29.33vh
+        width: 29.33vh;
     }
 }
 
 @media (max-aspect-ratio: 1440/900) {
     #lo-me {
-        width: 18.31vw
+        width: 18.31vw;
     }
 }
 
@@ -646,10 +637,10 @@ div.l_ div {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    margin-top: -8vh;
+    margin-top: -12vh;
+    /* Less extreme than -8vh for better balance */
 }
 
-/* Shared styles for description and links blocks */
 #ho-ab0,
 #ho-ab1 {
     position: relative;
@@ -665,7 +656,6 @@ div.l_ div {
     flex: 1;
 }
 
-/* Responsive typography for wide screens */
 @media (min-aspect-ratio: 1440/900) {
 
     #ho-ab0,
@@ -675,7 +665,6 @@ div.l_ div {
     }
 }
 
-/* Responsive typography for narrow screens */
 @media (max-aspect-ratio: 1440/900) {
 
     #ho-ab0,
@@ -701,13 +690,11 @@ div.l_ div {
 /* Reduce space between description and links */
 #ho-ab0 {
     margin-bottom: -2vh;
-    /* Tight but not overlapping */
 }
 
 /* Minimize gap between description and links */
 #ho-ab1 {
     margin-top: 0;
-    /* Avoid stacking too tightly */
 }
 
 /* Horizontally layout the links with spacing */
@@ -717,26 +704,6 @@ div.l_ div {
     justify-content: center;
     flex-wrap: wrap;
 }
-
-
-/* Remove or comment out the animation CSS temporarily */
-/*
-#ho-ab0 .y {
-    transform: translateY(-100%);
-    transition: transform .8s cubic-bezier(.16, 1, .3, 1)
-}
-
-#ho-ab1 .y {
-    transform: translateY(100%);
-    transition: transform .8s cubic-bezier(.16, 1, .3, 1)
-}
-
-#ho-ab0.fx .y,
-#ho-ab1.fx .y {
-    transition-delay: 50ms;
-    transform: translateY(0)
-}
-*/
 
 #ho-bi {
     position: relative;
@@ -1848,4 +1815,44 @@ body {
 html::-webkit-scrollbar,
 body::-webkit-scrollbar {
     display: none;
+}
+
+.tab {
+    cursor: pointer !important;
+}
+
+.tab-content {
+    display: none !important;
+}
+
+.tab-content.active {
+    display: block !important;
+}
+
+.tab-content.active #ho-se-co1 .y_>div {
+    transform: translate3d(0, 0, 0) !important;
+}
+
+.tab-content.active #ho-se-co2 .y_>div {
+    transform: translate3d(0, 0, 0) !important;
+}
+
+.tab-content.active #ho-se-co1 {
+    pointer-events: all !important;
+}
+
+.tab-content.active #ho-se-co2 {
+    pointer-events: all !important;
+}
+
+.tab-content.active #ho-se-co1.fx .y {
+    transform: translateZ(0) !important;
+}
+
+.tab-content.active #ho-se-co2.fx .y {
+    transform: translateZ(0) !important;
+}
+
+.tab-content.active .y {
+    transform: translate3d(0, 0, 0) !important;
 }

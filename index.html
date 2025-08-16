@@ -232,58 +232,63 @@
             <p>
               <a href="https://github.com/hulashc" target="_blank">GitHub</a> |
               <a href="https://linkedin.com/in/hulashchand" target="_blank">LinkedIn</a> |
-              <a href="/resume.pdf" target="_blank">Resume</a>
+              <a href="resume.pdf" target="_blank" rel="noopener">Resume</a>
             </p>
           </div>
         </section>
         <section id="ho-se" style="transform: translate3d(0px, 0px, 0px);">
           <div id="ho-se-co">
             <div id="ho-se-co0">
-              <div class="o" id="ho-se-co0-0">Projects</div>
+              <div class="o tab active" id="projects-tab" data-tab="projects">Projects</div>
               <div>/</div>
-              <div id="ho-se-co0-1">Archive</div>
+              <div class="tab" id="archive-tab" data-tab="archive">Archive</div>
             </div>
-            <div class="fx" id="ho-se-co1">
-              <div class="y_">
-                <div class="y"><a class="_li o" href="/work/alicia-bezares">Alicia Bezares</a>
-                  <div>—</div><a class="_li" href="/work/cantamarta">Çantamarta</a>
-                  <div>—</div><a class="_li" href="/work/dior">Dior</a>
-                  <div>—</div><a class="_li" href="/work/escuela-san-telmo">Escuela San Telmo</a>
+            <div class="tab-content active" id="projects-content">
+              <div class="fx" id="ho-se-co1">
+                <div class="y_">
+                  <div class="y"><a class="_li o" href="/work/alicia-bezares">Real-time Analytics Dashboard</a>
+                    <div>—</div><a class="_li" href="/work/cantamarta">Data Lake Migration</a>
+                    <div>—</div><a class="_li" href="/work/dior">KafkaStream</a>
+                    <div>—</div><a class="_li" href="/work/escuela-san-telmo">APIOptim</a>
+                  </div>
                 </div>
-              </div>
-              <div class="y_">
-                <div class="y"><a class="_li" href="/work/estela-clares">Estela Clarés</a>
-                  <div>—</div><a class="_li" href="/work/ivanros">Ivanrós</a>
-                  <div>—</div><a class="_li" href="/work/maimono">Maimono</a>
-                  <div>—</div><a class="_li" href="/work/rocstrong">Rocstrong</a>
+                <div class="y_">
+                  <div class="y"><a class="_li" href="/work/estela-clares">FraudDetect</a>
+                    <div>—</div><a class="_li" href="/work/ivanros">Governance</a>
+                    <div>—</div><a class="_li" href="/work/maimono">MLOps</a>
+                    <div>—</div><a class="_li" href="/work/rocstrong">RealtimeAPI</a>
+                  </div>
                 </div>
-              </div>
-              <div class="y_">
-                <div class="y"><a class="_li" href="/work/southwest-festival">Southwest Festival</a>
-                  <div>—</div><a class="_li" href="/work/weareduenas">Wearedueñas</a>
+                <div class="y_">
+                  <div class="y"><a class="_li" href="/work/southwest-festival">Warehouse</a>
+                    <div>—</div><a class="_li" href="/work/weareduenas">CustomerML</a>
+                  </div>
                 </div>
               </div>
             </div>
-            <div id="ho-se-co2">
-              <div class="y_">
-                <div class="y"><a class="_li o" href="/archive/adrian-lahreche">Adrián Lahreche</a>
-                  <div>—</div><a class="_li" href="/archive/cuba">Cuba</a>
-                  <div>—</div><a class="_li" href="/archive/ernesto-mendes">Ernesto Mendes</a>
-                  <div>—</div><a class="_li" href="/archive/ivan-mendes">Iván Mendes</a>
+            <div class="tab-content" id="archive-content">
+              <div class="fx" id="ho-se-co2">
+                <div class="y_">
+                  <div class="y"><a class="_li o" href="/archive/adrian-lahreche">Snowflake</a>
+                    <div>—</div><a class="_li" href="/archive/cuba">SparkJobs</a>
+                    <div>—</div><a class="_li" href="/archive/ernesto-mendes">Hadoop</a>
+                    <div>—</div><a class="_li" href="/archive/ivan-mendes">MongoDB</a>
+                  </div>
                 </div>
-              </div>
-              <div class="y_">
-                <div class="y"><a class="_li" href="/archive/marrakech">Marrakech</a>
-                  <div>—</div><a class="_li" href="/archive/tanzania">Tanzania</a>
-                  <div>—</div><a class="_li" href="/archive/valencia">Valencia</a>
+                <div class="y_">
+                  <div class="y"><a class="_li" href="/archive/marrakech">Airflow</a>
+                    <div>—</div><a class="_li" href="/archive/tanzania">Docker</a>
+                    <div>—</div><a class="_li" href="/archive/valencia">LegacyETL</a>
+                  </div>
                 </div>
-              </div>
-              <div class="y_">
-                <div class="y"></div>
+                <div class="y_">
+                  <div class="y"></div>
+                </div>
               </div>
             </div>
           </div>
         </section>
+
 
         <footer id="f">
           <div id="f1">
@@ -338,6 +343,8 @@
   <script src="simple-router.js"></script>
   <script src="touch-drag.js"></script>
   <script src="viewport-manager.js"></script>
+  <script src="tab-feature.js"></script>
+  <script src="tab-feature.js"></script>
 </body>
 
 </html>
